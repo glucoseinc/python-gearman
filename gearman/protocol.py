@@ -191,6 +191,8 @@ def parse_binary_command(in_buffer, is_response=True):
 
     # By default, we'll assume we're dealing with a gearman command
     magic, cmd_type, cmd_len = struct.unpack('!4sII', in_buffer[:COMMAND_HEADER_SIZE])
+    gearman_logger.debug(f'const : {GEARMAN_COMMAND_TEXT_COMMAND}')
+    gearman_logger.debug(f'cmd_type_value : {cmd_type}')
 
     received_bad_response = is_response and bool(magic != MAGIC_RES_STRING)
     received_bad_request = not is_response and bool(magic != MAGIC_REQ_STRING)
